@@ -25,6 +25,18 @@ class my_excel:
                     content[title[j]].append(cell.value)
         return title, content
 
+    def sheel_upper(self):
+        from openpyxl import load_workbook
+        wb = load_workbook(self.path)
+        sh1 = wb[self.sh]
+        for i, row in enumerate(sh1.rows):
+            for j, cell in enumerate(row):
+                if cell.value != None:
+                    cell.value=cell.value.upper()
+        # wb.save(self.sh+'(修改).xlsx')
+        wb.save(f'../create_data/{self.sh}(修改).xlsx')
+
+
     def get_date_toStr(self):
         from openpyxl import load_workbook
         wb = load_workbook(self.path)
@@ -90,4 +102,5 @@ if __name__ == '__main__':
     # print(title,content)
     # my_excel1.get_procedures(content)
     my_excel1=my_excel('../base_data/ora_pac.xlsx', '字典')
-    my_excel1.sheet_split("原始数据",".","O_USER","O_TB")
+    # my_excel1.sheet_split("原始数据",".","O_USER","O_TB")
+    my_excel1.sheel_upper()
