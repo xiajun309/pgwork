@@ -66,9 +66,10 @@ if __name__ == '__main__':
     # ss=mystr1.getNextIndex("PROCEDURE")
     # ss=mystr1.get_str_betweenAB('PROCEDURE','(')
     str1="""
-陈婷
-全澄
-吴敏
+HBXNA1900226CGN00
+HBXNA1900576CGN00
+HBXNA2000222CGN00
+HBXNA2000196CGN00
  
     """
     mystr1.get_CnPlugin(str1)
