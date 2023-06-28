@@ -1,14 +1,11 @@
 from my_excel import my_excel
 from mystr import mystr
 
+
+
 class ora_pac:
     def __init__(self):
         pass
-
-
-
-
-
 
     def sql_o_to_pg(self,str):
         arrs=[]
@@ -26,9 +23,13 @@ class ora_pac:
         PG_USER = content["PG_USER"]
         PG_TB = content["PG_TB"]
         for i in range(len(O_TB)):
-            dict_all[O_TB[i]]=PG_USER[i]+"."+PG_TB[i]
-            dict_all[O_USER[i]+"."+O_TB[i]]=PG_USER[i]+"."+PG_TB[i]
+            # print(O_TB[i],PG_USER[i],PG_TB[i])
+            if PG_USER[i] !=None  and  PG_TB[i] !=None :
+                dict_all[O_TB[i]]=PG_USER[i]+"."+PG_TB[i]
+                dict_all[O_USER[i]+"."+O_TB[i]]=PG_USER[i]+"."+PG_TB[i]
+        print("--------------------dict_all---------------------------------------")
         print(dict_all)
+        print("--------------------dict_all  end---------------------------------------")
         dict_tb= {}
         for  i,arr  in  enumerate(arrs):
             arr_new=self.sql_o_to_pg_row(arr,dict_tb,dict_all)
@@ -93,11 +94,20 @@ class ora_pac:
 
 if __name__ == '__main__':
     str="""
-
+					
     """
     ora_pac1=ora_pac()
     result, dict_tb=ora_pac1.sql_o_to_pg(str)
-    print("dict_tb:",dict_tb)
+    print("--------------------dict_tb---------------------------------------")
+    print(dict_tb)
+    print("--------------------dict_tb2---------------------------------------")
     for key  in dict_tb:
-        print(key,dict_tb[key])
+        if key[0:2].upper()!="XJ" and key[0:2].upper()!="LS" and key[0:1].upper()!="]" \
+                and key[0:3].upper() != "XN_" and key[0:4].upper() != "HSP_" and key[0:3].upper() != "LC_" \
+                and key[0:4].upper() != "XWH_" and key[0:4].upper() != "HSP_" and key[0:3].upper() != "LC_" \
+                and key[0:5].upper() != "XNHEJ" \
+                and key[0:2].upper() != "S0" and key[0:2].upper() != "S1" \
+                and key[0:2].upper() != "S2" and key[0:2].upper() != "S3" :
+            if dict_tb[key]==None or dict_tb[key]=="":
+                print(key,dict_tb[key])
 
