@@ -64,16 +64,16 @@ class ora_pac:
                             tmp_str = arr[str_tb_start:str_tb_end + 1]
                             if tmp_str[-1]==")":
                                 try:
-                                    dict_tb[tmp_str[0:-1]] = dict_all[tmp_str[0:-1].upper()]
+                                    dict_tb[tmp_str[0:-1].upper()] = dict_all[tmp_str[0:-1].upper()]
                                     tmp_str = dict_all[tmp_str[0:-1].upper()] + ")"
                                 except:
-                                    dict_tb[tmp_str] = ""
+                                    dict_tb[tmp_str.upper()] = ""
                             else :
                                 try:
-                                    dict_tb[tmp_str] = dict_all[tmp_str.upper()]
+                                    dict_tb[tmp_str.upper()] = dict_all[tmp_str.upper()]
                                     tmp_str = dict_all[tmp_str.upper()]
                                 except:
-                                    dict_tb[tmp_str] = ""
+                                    dict_tb[tmp_str.upper()] = ""
                                     # 替换arr
                             arr_new += arr[vi:str_tb_start] + tmp_str + s
                             vi = str_tb_end + 1
@@ -93,9 +93,19 @@ class ora_pac:
 
 
 if __name__ == '__main__':
-    str="""
-					
-    """
+    str = my_excel.date_toStr('../base_data/ora_pac.xlsx', 'PAG_XWH_WG_MON')
+    str+= my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XJ_SMALLMODULE')
+    str+= my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XN_MARKETING_PAC')
+    str+= my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XN_MARKETING_PAC_Eight')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'serv_mon_yyyymm_t')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'xn_backup')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'xj_jifei_check')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XJ')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'a_boss_serv_counrty')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XN_ZZ_PAC_ONE')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XN_ZQ_PAC_ONE')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XN_KPI')
+    str += my_excel.date_toStr('../base_data/ora_pac.xlsx', 'XJ_OFFER')
     ora_pac1=ora_pac()
     result, dict_tb=ora_pac1.sql_o_to_pg(str)
     print("--------------------dict_tb---------------------------------------")
@@ -105,7 +115,8 @@ if __name__ == '__main__':
         if key[0:2].upper()!="XJ" and key[0:2].upper()!="LS" and key[0:1].upper()!="]" \
                 and key[0:3].upper() != "XN_" and key[0:4].upper() != "HSP_" and key[0:3].upper() != "LC_" \
                 and key[0:4].upper() != "XWH_" and key[0:4].upper() != "HSP_" and key[0:3].upper() != "LC_" \
-                and key[0:5].upper() != "XNHEJ" \
+                and key[0:5].upper() != "XNHEJ" and key[0:4].upper() != "LJP_"  and key[0:2].upper() != "T_" \
+                and key[0:3].upper() != "UR_" and key[0:2].upper() != "S_" and key[0:2].upper() != "'|" \
                 and key[0:2].upper() != "S0" and key[0:2].upper() != "S1" \
                 and key[0:2].upper() != "S2" and key[0:2].upper() != "S3" :
             if dict_tb[key]==None or dict_tb[key]=="":

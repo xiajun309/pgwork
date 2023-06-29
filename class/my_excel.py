@@ -36,24 +36,22 @@ class my_excel:
         # wb.save(self.sh+'(修改).xlsx')
         wb.save(f'../create_data/{self.sh}(修改).xlsx')
 
+    def date_toStr(path,sh):
+        my_excel1=my_excel(path, sh)
+        content=my_excel1.get_date_toStr()
+        return content
 
     def get_date_toStr(self):
         from openpyxl import load_workbook
         wb = load_workbook(self.path)
         sh1=wb[self.sh]
         content=""
-        title=""
         for i,row  in  enumerate(sh1.rows):
-            if i==0 :
-                for j,cell in enumerate(row):
-                    # content[cell.value]=[cell.value]
-                    if cell.value != None:
-                        title += str(cell.value)+'\n'
-            else:
-                for j,cell in enumerate(row):
-                    if cell.value !=None:
-                        content+=str(cell.value)+'\n'
-        return title, content
+            for j, cell in enumerate(row):
+                if cell.value != None:
+                    content += str(cell.value) + '\n'
+        return  content
+
 
     #取出oracle包中的procedure  返回[]
     def get_procedures(self,str1:str):
@@ -97,10 +95,7 @@ class my_excel:
         return title, content
 
 if __name__ == '__main__':
-    # my_excel1=my_excel('../base_data/ora_pac.xlsx', 'PAG_XWH_WG_MON')
-    # title, content=my_excel1.get_date_toStr()
-    # print(title,content)
-    # my_excel1.get_procedures(content)
-    my_excel1=my_excel('../base_data/ora_pac.xlsx', '字典')
     # my_excel1.sheet_split("原始数据",".","O_USER","O_TB")
-    my_excel1.sheel_upper()
+    # my_excel1.sheel_upper()
+    content=my_excel.date_toStr('../base_data/ora_pac.xlsx', 'PAG_XWH_WG_MON')
+    print(content)
