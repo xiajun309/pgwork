@@ -66,10 +66,13 @@ if __name__ == '__main__':
     # ss=mystr1.getNextIndex("PROCEDURE")
     # ss=mystr1.get_str_betweenAB('PROCEDURE','(')
     str1="""
-HBXNA1900226CGN00
-HBXNA1900576CGN00
-HBXNA2000222CGN00
-HBXNA2000196CGN00
+
+440038203966
+89062300019
+89028237712
+440041320218
+
+
  
     """
     mystr1.get_CnPlugin(str1)
@@ -77,3 +80,4 @@ HBXNA2000196CGN00
     str2 = """     
         """
     mystr1.get_tableName(str2)
+    print("hot-fix  2222")
