@@ -77,3 +77,4 @@ HBXNA2000196CGN00
     str2 = """     
         """
     mystr1.get_tableName(str2)
+    print("master  2222")
